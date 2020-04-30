@@ -5,12 +5,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextFlow id="leftText" fx:id="leftText" layoutX="68.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
       <TextFlow id="rightText" fx:id="rightText" layoutX="333.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-      <Text fx:id="questionText" layoutX="289.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
       <MenuButton fx:id="fileDropdown" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Lesson Select">
         <items>
             <RadioMenuItem fx:id="lesson5" mnemonicParsing="false" text="Lesson 5" />
@@ -18,5 +16,6 @@
             <RadioMenuItem fx:id="lesson7" mnemonicParsing="false" text="Lesson 7" />
         </items>
       </MenuButton>
+      <Label fx:id="questionText" layoutX="286.0" layoutY="83.0" text="Label" />
    </children>
 </Pane>

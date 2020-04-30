@@ -26,6 +26,7 @@ import javafx.scene.control.RadioMenuItem;
 import java.util.Random;
 import java.io.File;
 import java.io.IOException;
+import javafx.scene.text.TextFlow;
 
 public class JPNSTesterController implements Initializable{
     @FXML
@@ -39,7 +40,7 @@ public class JPNSTesterController implements Initializable{
     private RadioMenuItem lesson7;
 
     @FXML
-    private Text questionText;
+    private Label questionText;
 
     @FXML
     private TextFlow leftText;
