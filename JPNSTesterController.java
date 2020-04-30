@@ -27,6 +27,8 @@ import java.util.Random;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.text.TextFlow;
+import java.util.ArrayList;
+import java.io.BufferedReader;
 
 public class JPNSTesterController implements Initializable{
     @FXML
@@ -76,7 +78,7 @@ public class JPNSTesterController implements Initializable{
         {
             System.err.format("Exception occurred trying to read '%s'.", filename);
             e.printStackTrace();
-            exit(-1);
+            return;
         }
         
     }
