@@ -46,9 +46,10 @@ public class JPNS extends Application {
             stage.setScene(scene);
             stage.show();
         }
-         catch (IOException e) {
+        catch (IOException e) {
             System.out.println("There was an exception in loading the GUI, most likely you did not compile" +
                 " the FXDocumentController class.");
+                e.printStackTrace();
             System.exit(0);
         }
     }

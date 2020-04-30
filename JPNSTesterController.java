@@ -64,7 +64,7 @@ public class JPNSTesterController implements Initializable{
     private void lesson5Action(ActionEvent event){
         lesson = "lesson5.dat";
         try {
-            File myObj = new File("lesson");
+            File myObj = new File(lesson);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
               String data = myReader.nextLine();

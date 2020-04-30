@@ -5,17 +5,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JPNSTesterController">
    <children>
-      <TextFlow id="leftText" fx:id="leftText" layoutX="68.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextFlow id="rightText" fx:id="rightText" layoutX="333.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-      <MenuButton fx:id="fileDropdown" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Lesson Select">
-        <items>
-            <RadioMenuItem fx:id="lesson5" mnemonicParsing="false" text="Lesson 5" />
-            <RadioMenuItem fx:id="lesson6" mnemonicParsing="false" text="Lesson 6" />
-            <RadioMenuItem fx:id="lesson7" mnemonicParsing="false" text="Lesson 7" />
-        </items>
+      <Label fx:id="questionText" layoutX="296.0" layoutY="93.0" text="Label" />
+      <MenuButton fx:id="fileDropdown" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" text="Lesson Select">
+         <items>
+            <RadioMenuItem fx:id="lesson5" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 5" />
+            <RadioMenuItem fx:id="lesson6" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 6" />
+            <RadioMenuItem fx:id="lesson7" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 7" />
+         </items>
       </MenuButton>
-      <Label fx:id="questionText" layoutX="286.0" layoutY="83.0" text="Label" />
+      <TextFlow id="rightText" fx:id="rightText" layoutX="343.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextFlow id="leftText" fx:id="leftText" layoutX="78.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
-</Pane>
+</AnchorPane>
