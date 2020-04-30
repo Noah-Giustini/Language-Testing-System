@@ -29,6 +29,8 @@ import java.io.IOException;
 import javafx.scene.text.TextFlow;
 import java.util.ArrayList;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.util.Scanner; 
 
 public class JPNSTesterController implements Initializable{
     @FXML
@@ -61,25 +63,18 @@ public class JPNSTesterController implements Initializable{
     @FXML
     private void lesson5Action(ActionEvent event){
         lesson = "lesson5.dat";
-        readFile(lesson);
-        List<String> records = new ArrayList<String>();
-        try
-        {
-            BufferedReader reader = new BufferedReader(new FileReader(lesson));
-            String line;
-            while ((line = reader.readLine()) != null){
-                System.out.println(line);
-                records.add(line);
+        try {
+            File myObj = new File("lesson");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+              String data = myReader.nextLine();
+              System.out.println(data);
             }
-            reader.close();
-            return records;
-        }
-        catch (Exception e)
-        {
-            System.err.format("Exception occurred trying to read '%s'.", filename);
+            myReader.close();
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
             e.printStackTrace();
-            return;
-        }
+          }
         
     }
 
