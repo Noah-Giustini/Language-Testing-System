@@ -8,19 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import java.lang.Integer;
-import java.lang.Double;
-import javafx.scene.control.CheckBox;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
 import java.util.Random;
@@ -31,9 +24,7 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.util.Scanner; 
-import java.util.Arrays;
 import java.util.List;
-import javafx.scene.paint.Color;
 import java.lang.Math;
 
 public class JPNSTesterController implements Initializable{
@@ -74,17 +65,18 @@ public class JPNSTesterController implements Initializable{
     Random r = new Random();
 
     private void openFile(){
-        System.out.println("attempting to read file");
+        //System.out.println("attempting to read file");
         try {
             File myObj = new File(lesson);
             Scanner myReader = new Scanner(myObj, "UTF-8");
-            System.out.println("attempting to get new line");
+            //System.out.println("attempting to get new line");
             while (myReader.hasNextLine()) {
               String data = myReader.nextLine();
               String[] parts = data.split("~");
               definitions.add(parts);
             }
             myReader.close();
+            //System.out.println("Successfully read file");
         } 
         catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
@@ -132,16 +124,21 @@ public class JPNSTesterController implements Initializable{
         if (correct == 0){
             grade++;
             outputText.setText("Correct!");
-            //outputText.setTextFill(Color.web(#00ff00));
+            checkmark.setImage(new Image("check.png"));
+            outputText.setStyle("-fx-text-fill: green;");
             next.setVisible(true);
             outputText.setVisible(true);
+            checkmark.setVisible(true);
+            
         }
         //wrong answer
         else{
             outputText.setText("Incorrect, the correct answer is: " + test.get(question)[1].toLowerCase());
-            //outputText.setTextFill(Color.web(#ff0000));
+            checkmark.setImage(new Image("x.png"));
+            outputText.setStyle("-fx-text-fill: red;");
             next.setVisible(true);
             outputText.setVisible(true);
+            checkmark.setVisible(true);
         }
     }
 
@@ -150,6 +147,7 @@ public class JPNSTesterController implements Initializable{
         submit.setVisible(true);
         next.setVisible(false);
         outputText.setVisible(false);
+        checkmark.setVisible(false);
         translation.clear();
         question++;
         if(question != test.size()){
@@ -167,6 +165,7 @@ public class JPNSTesterController implements Initializable{
         lesson = "lesson5.dat";
         definitions.clear();
         test.clear();
+        used.clear();
         question = 0;
         openFile();
         createTest();

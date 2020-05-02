@@ -8,7 +8,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JPNSTesterController">
    <children>
-      <Label fx:id="questionText" layoutX="296.0" layoutY="93.0" />
+      <Label fx:id="questionText" layoutX="226.0" layoutY="94.0" prefHeight="17.0" prefWidth="149.0" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       <MenuButton fx:id="fileDropdown" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" text="Lesson Select">
          <items>
             <RadioMenuItem fx:id="lesson5" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 5">
@@ -19,10 +22,13 @@
             <RadioMenuItem fx:id="lesson7" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 7" toggleGroup="$lessons" />
          </items>
       </MenuButton>
-      <TextField fx:id="translation" layoutX="220.0" layoutY="193.0" />
+      <TextField fx:id="translation" layoutX="227.0" layoutY="188.0" />
       <Button fx:id="submit" layoutX="281.0" layoutY="254.0" mnemonicParsing="false" onAction="#submitQuestion" text="Submit" />
-      <Button fx:id="next" layoutX="480.0" layoutY="324.0" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
-      <ImageView fx:id="checkmark" fitHeight="69.0" fitWidth="80.0" layoutX="24.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="outputText" layoutX="203.0" layoutY="314.0" prefHeight="21.0" prefWidth="231.0" />
+      <Button fx:id="next" layoutX="534.0" layoutY="329.0" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
+      <ImageView fx:id="checkmark" fitHeight="80.0" fitWidth="80.0" layoutX="36.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="outputText" layoutX="125.0" layoutY="314.0" prefHeight="27.0" prefWidth="391.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </children>
 </AnchorPane>
