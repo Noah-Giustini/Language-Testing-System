@@ -74,15 +74,15 @@ public class JPNSTesterController implements Initializable{
     Random r = new Random();
 
     private void openFile(){
+        System.out.println("attempting to read file");
         try {
             File myObj = new File(lesson);
-            Scanner myReader = new Scanner(myObj);
+            Scanner myReader = new Scanner(myObj, "UTF-8");
+            System.out.println("attempting to get new line");
             while (myReader.hasNextLine()) {
               String data = myReader.nextLine();
               String[] parts = data.split("~");
               definitions.add(parts);
-              System.out.println(parts[0]);
-              System.out.println(parts[1]);
             }
             myReader.close();
         } 

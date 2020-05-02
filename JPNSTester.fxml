@@ -11,9 +11,12 @@
       <Label fx:id="questionText" layoutX="296.0" layoutY="93.0" />
       <MenuButton fx:id="fileDropdown" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" text="Lesson Select">
          <items>
-            <RadioMenuItem fx:id="lesson5" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 5" />
-            <RadioMenuItem fx:id="lesson6" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 6" />
-            <RadioMenuItem fx:id="lesson7" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 7" />
+            <RadioMenuItem fx:id="lesson5" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 5">
+               <toggleGroup>
+                  <ToggleGroup fx:id="lessons" />
+               </toggleGroup></RadioMenuItem>
+            <RadioMenuItem fx:id="lesson6" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 6" toggleGroup="$lessons" />
+            <RadioMenuItem fx:id="lesson7" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 7" toggleGroup="$lessons" />
          </items>
       </MenuButton>
       <TextField fx:id="translation" layoutX="220.0" layoutY="193.0" />
