@@ -181,6 +181,7 @@ public class JPNSTesterController implements Initializable{
         question = 0;
         openFile();
         createTest();
+        startTest();
         
     }
 
@@ -192,6 +193,7 @@ public class JPNSTesterController implements Initializable{
         question = 0;
         openFile();
         createTest();
+        startTest();
         
     }
 

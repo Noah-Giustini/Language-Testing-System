@@ -18,11 +18,11 @@
                <toggleGroup>
                   <ToggleGroup fx:id="lessons" />
                </toggleGroup></RadioMenuItem>
-            <RadioMenuItem fx:id="lesson6" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 6" toggleGroup="$lessons" />
+            <RadioMenuItem fx:id="lesson6" mnemonicParsing="false" onAction="#lesson6Action" text="Lesson 6" toggleGroup="$lessons" />
             <RadioMenuItem fx:id="lesson7" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 7" toggleGroup="$lessons" />
          </items>
       </MenuButton>
-      <TextField fx:id="translation" layoutX="227.0" layoutY="188.0" />
+      <TextField fx:id="translation" layoutX="227.0" layoutY="188.0" onAction="#submitQuestion" />
       <Button fx:id="submit" layoutX="281.0" layoutY="254.0" mnemonicParsing="false" onAction="#submitQuestion" text="Submit" />
       <Button fx:id="next" layoutX="534.0" layoutY="329.0" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
       <ImageView fx:id="checkmark" fitHeight="80.0" fitWidth="80.0" layoutX="36.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" />
