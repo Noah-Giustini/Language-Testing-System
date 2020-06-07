@@ -27,6 +27,8 @@ import java.util.Scanner;
 import java.util.List;
 import java.lang.Math;
 
+import java.sql.*;
+
 public class JPNSTesterController implements Initializable{
     @FXML
     private MenuButton fileDropdown;
@@ -157,6 +159,7 @@ public class JPNSTesterController implements Initializable{
             submit.setVisible(false);
             outputText.setText("You got " + Integer.toString(grade) + " correct.");
             outputText.setVisible(true);
+            
         }
     }
 
