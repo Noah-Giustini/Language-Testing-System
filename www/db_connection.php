@@ -1,9 +1,9 @@
 <?php
 function OpenCon(){
-    $dbhost = "localhost";
-    $dbuser = "root";
+    $dbhost = "host address";
+    $dbuser = "username";
     $dbpass = "password";
-    $db = "languagesys";
+    $db = "database name";
 
     $con = new mysqli($dbhost,$dbuser,$dbpass,$db) or die("Connect Failed: %s\n". $con->error);
     return $con; 
