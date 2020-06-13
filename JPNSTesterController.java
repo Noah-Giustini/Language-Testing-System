@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -27,7 +28,9 @@ import java.util.Scanner;
 import java.util.List;
 import java.lang.Math;
 
-import java.sql.*;
+import java.net.*; 
+import java.io.*; 
+
 
 public class JPNSTesterController implements Initializable{
     @FXML
@@ -45,9 +48,16 @@ public class JPNSTesterController implements Initializable{
 
     @FXML
     private TextField translation;
+    @FXML
+    private TextField userID;
+
+    @FXML
+    private PasswordField password;
 
     @FXML
     private Button submit;
+    @FXML
+    private Button login;
 
     @FXML
     private Button next;
@@ -99,10 +109,49 @@ public class JPNSTesterController implements Initializable{
     }
 
     private void startTest(){
+        outputText.setVisible(false);
         submit.setVisible(true);
         translation.setVisible(true);
         questionText.setVisible(true);
         questionText.setText(test.get(question)[0]);
+    }
+
+    private void loginLogic(String id, String pass){
+        System.out.println(id);
+        System.out.println(pass);
+        boolean success = false;
+        String address = "127.0.0.1";
+        int port = 31337;
+
+        try {
+            System.out.println("Connecting to " + address+ " on port " + port);
+            Socket client = new Socket(address, port);
+            
+            System.out.println("Just connected to " + client.getRemoteSocketAddress());
+            OutputStream outToServer = client.getOutputStream();
+            DataOutputStream out = new DataOutputStream(outToServer);
+            String toSend = "L\n" + id +"\n" + pass;
+
+            System.out.println(toSend.getBytes());
+            
+            out.write(toSend.getBytes());
+            //InputStream inFromServer = client.getInputStream();
+            //DataInputStream in = new DataInputStream(inFromServer);
+            
+            //System.out.println("Server says " + in.readUTF());
+            client.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //check if login is good
+        if(success){
+            fileDropdown.setVisible(true);
+        }
+        else{
+            outputText.setText("There was an error logging in. Please check your connection");
+            outputText.setStyle("-fx-text-fill: red;");
+            outputText.setVisible(true);
+        }
     }
 
 
@@ -114,7 +163,13 @@ public class JPNSTesterController implements Initializable{
         submit.setVisible(false);
         translation.setVisible(false);
         questionText.setVisible(false);
+        fileDropdown.setVisible(false);
     } 
+
+    @FXML
+    public void submitLogin(ActionEvent event){
+        loginLogic(userID.getText(),password.getText());
+    }
 
     @FXML
     public void submitQuestion(ActionEvent event){

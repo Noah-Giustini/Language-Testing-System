@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -30,5 +31,8 @@
          <font>
             <Font size="18.0" />
          </font></Label>
+      <TextField fx:id="userID" layoutX="226.0" layoutY="150.0" promptText="User ID" />
+      <Button fx:id="login" layoutX="281.0" layoutY="254.0" mnemonicParsing="false" onAction="#submitLogin" text="Login" />
+      <PasswordField fx:id="password" layoutX="226.0" layoutY="188.0" promptText="Password" />
    </children>
 </AnchorPane>
