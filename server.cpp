@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <iostream>
+#include <cstring>
 
 //global constraints
 #define MAX_BUFFER_SIZE 40
@@ -34,9 +35,8 @@ int main()
     struct sockaddr_in server;
     static struct sigaction act;
     char messagein[MAX_MESSAGE_LENGTH];         //char array to hold the incoming message from client
+    char messageout[MAX_MESSAGE_LENGTH];
     char transformation[MAX_MESSAGE_LENGTH];    //char array to hold the client's desired transformation
-    char var1[MAX_MESSAGE_LENGTH];           //char array to hold the message from the client
-    char var2[MAX_MESSAGE_LENGTH];        //char array to hold the outbound message for the client
     int server_ports[7];                        //int array to hold all of the sockets that will be used for transformations
     int parentsockfd;
     int i, j;
@@ -79,6 +79,7 @@ int main()
 
     //ensure message in and message out are zero'd out to avoid ghosting
     bzero(messagein, MAX_MESSAGE_LENGTH);
+    bzero(messageout, MAX_MESSAGE_LENGTH);
 
     fprintf(stderr, "Welcome! I am the Language Testing System server!!\n");
     fprintf(stderr, "server listening on TCP port %d...\n\n", MYPORTNUM);
@@ -110,45 +111,12 @@ int main()
             //recieve the message in from the client
             while (recv(childsockfd, messagein, MAX_MESSAGE_LENGTH, 0) > 0)
             {
-                bool split1 = false;     //have we split the message from teh transformation
-                bool split2 = false;
-                int var1len = 0;         //how long is the transformation
                 string protocol;
-                int cnt = 0;            //keep track of all chars we have seen
+                string val1;
+                string val2;
                 //for all the characters in the input
                 for (int i = 0; i < strlen(messagein); i++)
                 {   
-                    /*
-                    //as long as we dont ahve a newline and we have not split yet we are dealing with the protocol
-                    if (messagein[i] != '\n' && !split1)
-                    {
-                        //set the protocol
-                        protocol = messagein[i];
-                    }
-                    //otherwise if we have a newline
-                    else if (messagein[i] == '\n' && !split1)
-                    {   
-                        //set split1 to indicate we have set protocol
-                        split1 = true;
-                    }
-                    //if we dont have a newline and we have split1 but not split 2
-                    else if (messagein[i] != '\n' && !split2 && split1)
-                    {
-                        //add to var1
-                        var1[i-2] += messagein[i];
-                        var1len++;
-                    }
-                    else if (messagein[i] == '\n' && split1 && !split2){
-                        //set split2 to true indicating var2 is done
-                        split2 = true;
-                    }
-                    //if we have a char that is not a newline and both splits are done
-                    else if (messagein[i] != '\n' && split1 && split2){
-                        //add to var2
-                        var1[i-(var1len+3)] += messagein[i];
-                    }
-                    cnt++;
-                    */
                    char *vals[3];
                    int iCurName = 0;
                    char *token;
@@ -165,15 +133,52 @@ int main()
 
                         token = strtok(NULL, "\n");
                     }
-                    string val1;
-                    string val2;
+                    
                     protocol = vals[0];
                     val1 = vals[1];
                     val2 = vals[2];
 
-                    cout << protocol << " " << val1 << " " << val2 << endl;
-                    
-                    
+                    char c1[val1.size()+1];
+                    char c2[val2.size()+1];
+
+                    strcpy(c1, val1.c_str());
+                    strcpy(c2, val2.c_str());
+
+                    if (protocol == "L"){
+                        char loginCmd[1000];
+                        sprintf(loginCmd, "php loginScript.php %s %s", c1, c2);
+
+
+                        char buffer[128];
+                        string result = "";
+                        FILE* pipe = popen(loginCmd, "r");
+                        if (!pipe) throw runtime_error("popen() failed!");
+                        try {
+                            while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+                                result += buffer;
+                            }
+                        } catch (...) {
+                            pclose(pipe);
+                            throw;
+                        }
+                        pclose(pipe);
+                        
+                        //login was good tell the client
+                        if (result == "success"){
+                            strcpy(messageout,"success(1)");
+                            /* send the result message back to the client */
+                            send(childsockfd, messageout, strlen(messageout), 0);
+                            cout << "we did it" << endl;
+                        }
+                        //login was not good tell the client
+                        else{
+                            strcpy(messageout,"error(0)");
+                            /* send the result message back to the client */
+                            send(childsockfd, messageout, strlen(messageout), 0);
+                            cout << "fail" << endl;
+                        }
+                    }
+
                     
                     
                     

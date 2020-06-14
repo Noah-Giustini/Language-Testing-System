@@ -131,8 +131,6 @@ public class JPNSTesterController implements Initializable{
             OutputStream outToServer = client.getOutputStream();
             DataOutputStream out = new DataOutputStream(outToServer);
             String toSend = "L\n" + id +"\n" + pass;
-
-            System.out.println(toSend.getBytes());
             
             out.write(toSend.getBytes());
             //InputStream inFromServer = client.getInputStream();
