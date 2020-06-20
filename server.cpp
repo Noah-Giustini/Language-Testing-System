@@ -114,6 +114,7 @@ int main()
                 string protocol;
                 string val1;
                 string val2;
+                string val3;
                 
                 //for all the characters in the input
                 for (int i = 0; i < strlen(messagein); i++)
@@ -138,12 +139,16 @@ int main()
                     protocol = vals[0];
                     val1 = vals[1];
                     val2 = vals[2];
+                    val3 = vals[3];
 
                     char c1[val1.size()+1];
                     char c2[val2.size()+1];
+                    char c3[val3.size()+1];
+                        
 
                     strcpy(c1, val1.c_str());
                     strcpy(c2, val2.c_str());
+                    strcpy(c3, val3.c_str());
 
                     if (protocol == "L"){
                         char loginCmd[1000];
@@ -180,9 +185,7 @@ int main()
                     else if (protocol == "G"){
                         string val3;
 
-                        val3 = vals[3];
-                        char c3[val3.size()+1];
-                        strcpy(c3, val3.c_str());
+                        
 
                         cout << c1 << " " << c2 << " " << c3 << endl;
 
