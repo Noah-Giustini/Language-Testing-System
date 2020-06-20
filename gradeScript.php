@@ -13,7 +13,7 @@ $userID = $argv[2];
 $grade = $argv[3];
 
 //check for existing grades
-$refgdsql = "SELECT grade FROM grade AS G WHERE G.studentID = '$userID' AND lessonid = '$lessonID";
+$refgdsql = "SELECT gradeval FROM grade AS G WHERE G.studentid = '$userID' AND lessonid = '$lessonID";
 $refgd = mysqli_query($con, $refgdsql);
 //if there is a grade see what it is
 if($refgd != false){
