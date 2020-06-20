@@ -184,6 +184,8 @@ int main()
                         char c3[val3.size()+1];
                         strcpy(c3, val3.c_str());
 
+                        cout << c1 << " " << c2 << " " << c3 << endl;
+
                         char gradeCmd[1000];
                         sprintf(gradeCmd, "php gradeScript.php %s %s %s", c1, c2, c3);
 

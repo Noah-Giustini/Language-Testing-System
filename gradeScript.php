@@ -3,34 +3,43 @@ include 'db_connection.php';
 
 $con=OpenCon();
 // Check connection
-if (mysqli_connect_errno($con))
-  {
+if (mysqli_connect_errno($con)){
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
+}
 
+//get args
 $lessonID = $argv[1];
 $userID = $argv[2];
 $grade = $argv[3];
 
+//check for existing grades
 $refgdsql = "SELECT grade FROM grade AS G WHERE G.studentID = '$userID' AND lessonid = '$lessonID";
 $refgd = mysqli_query($con, $refgdsql);
-$refgd->data_seek(0);
-$result = $refgd->fetch_row();
+//if there is a grade see what it is
+if($refgd != false){
+    $refgd->data_seek(0);
+    $result = $refgd->fetch_row();
 
-if($result[0] <= $grade){
-    $updateGrade = "INSERT INTO grade VALUE ('$lessonID','$userID','$grade');"
-    if (!mysqli_query($con,$updateGrade)){
+    //if the new grade is better update the value
+    if($result[0] <= $grade){
+        $updateGrade = "UPDATE grade SET gradeval = '$grade' WHERE lessonid = '$lessonID' AND studentid = '$userID';";
+        if (!mysqli_query($con,$updateGrade)){
+            die('Error: ' . mysqli_error($con));
+        }
+        //let server know we did good
+        print("success");
+    
+    }
+}
+//no grade exists yet. add new one
+else{
+    $insertGrade = "INSERT INTO grade VALUE ('$lessonID','$userID','$grade');";
+    if (!mysqli_query($con,$insertGrade)){
         die('Error: ' . mysqli_error($con));
     }
-    $refgd->close();
-    print("success");
-
-}else{
-    print("something bad happened");
 }
-
-
+//close variable and connection
+$refgd->close();
 mysqli_close($con);
-
 
 ?>
