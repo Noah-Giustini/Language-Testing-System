@@ -114,6 +114,7 @@ int main()
                 string protocol;
                 string val1;
                 string val2;
+                
                 //for all the characters in the input
                 for (int i = 0; i < strlen(messagein); i++)
                 {   
@@ -168,14 +169,50 @@ int main()
                             strcpy(messageout,"success(1)");
                             /* send the result message back to the client */
                             send(childsockfd, messageout, strlen(messageout), 0);
-                            cout << "we did it" << endl;
                         }
                         //login was not good tell the client
                         else{
                             strcpy(messageout,"error(0)");
                             /* send the result message back to the client */
                             send(childsockfd, messageout, strlen(messageout), 0);
-                            cout << "fail" << endl;
+                        }
+                    }
+                    else if (protocol == "G"){
+                        string val3;
+
+                        val3 = vals[3];
+                        char c3[val3.size()+1];
+                        strcpy(c3, val3.c_str());
+
+                        char gradeCmd[1000];
+                        sprintf(gradeCmd, "php gradeScript.php %s %s %s", c1, c2, c3);
+
+
+                        char buffer[128];
+                        string result = "";
+                        FILE* pipe = popen(gradeCmd, "r");
+                        if (!pipe) throw runtime_error("popen() failed!");
+                        try {
+                            while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+                                result += buffer;
+                            }
+                        } catch (...) {
+                            pclose(pipe);
+                            throw;
+                        }
+                        pclose(pipe);
+                        
+                        //login was good tell the client
+                        if (result == "success"){
+                            strcpy(messageout,"success(1)");
+                            /* send the result message back to the client */
+                            send(childsockfd, messageout, strlen(messageout), 0);
+                        }
+                        //login was not good tell the client
+                        else{
+                            strcpy(messageout,"error(0)");
+                            /* send the result message back to the client */
+                            send(childsockfd, messageout, strlen(messageout), 0);
                         }
                     }
 

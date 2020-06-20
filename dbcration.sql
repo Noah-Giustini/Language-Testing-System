@@ -15,7 +15,7 @@ DROP SCHEMA IF EXISTS `languagesys` ;
 -- -----------------------------------------------------
 -- Schema languagesys
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `languagesys` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE SCHEMA IF NOT EXISTS `languagesys` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
 USE `languagesys` ;
 
 -- -----------------------------------------------------
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `languagesys`.`course` (
   PRIMARY KEY (`idcourse`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `languagesys`.`student` (
   PRIMARY KEY (`idstudent`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `languagesys`.`lesson` (
     REFERENCES `languagesys`.`student` (`idstudent`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `languagesys`.`takes` (
     REFERENCES `languagesys`.`student` (`idstudent`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

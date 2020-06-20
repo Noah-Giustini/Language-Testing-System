@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `languagesys` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
 USE `languagesys`;
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
@@ -28,7 +28,7 @@ CREATE TABLE `course` (
   `idcourse` int(11) NOT NULL,
   `coursename` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idcourse`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,7 +56,7 @@ CREATE TABLE `grade` (
   KEY `studentid_idx` (`studentid`),
   CONSTRAINT `lessonid` FOREIGN KEY (`lessonid`) REFERENCES `lesson` (`idlesson`),
   CONSTRAINT `studentid` FOREIGN KEY (`studentid`) REFERENCES `student` (`idstudent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +82,7 @@ CREATE TABLE `lesson` (
   PRIMARY KEY (`idlesson`),
   KEY `cid_idx` (`lesson_cid`),
   CONSTRAINT `lesson_cid` FOREIGN KEY (`lesson_cid`) REFERENCES `course` (`idcourse`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +108,7 @@ CREATE TABLE `student` (
   `password` varchar(128) DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idstudent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +135,7 @@ CREATE TABLE `takes` (
   KEY `takes_sid_idx` (`takes_sid`),
   CONSTRAINT `takes_cid` FOREIGN KEY (`takes_cid`) REFERENCES `course` (`idcourse`),
   CONSTRAINT `takes_sid` FOREIGN KEY (`takes_sid`) REFERENCES `student` (`idstudent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

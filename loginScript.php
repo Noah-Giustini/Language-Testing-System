@@ -11,9 +11,6 @@ if (mysqli_connect_errno($con))
 $userID = $argv[1];
 $password = $argv[2];
 
-error_log($userID);
-error_log($password);
-
 $refpwsql = "SELECT password FROM student AS S WHERE S.idstudent = '$userID'";
 $refpw = mysqli_query($con, $refpwsql);
 $refpw->data_seek(0);

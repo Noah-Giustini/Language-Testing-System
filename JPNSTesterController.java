@@ -2,6 +2,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,10 +70,13 @@ public class JPNSTesterController implements Initializable{
     private Label outputText;
 
     private String lesson;
+    private int lessonID;
+    private String userid;
     private int question = 0;
     private int grade = 0;
     private ArrayList<String[]> definitions = new ArrayList<String[]>();
     private ArrayList<String[]> test = new ArrayList<String[]>();
+    private int[] jpnsLessons = new int[]{0,90772514, 79182977, 64631637, 75267000, 69347664, 97448195, 38815115};
     private List<Integer> used = new ArrayList<Integer>();
     Random r = new Random();
 
@@ -117,10 +121,8 @@ public class JPNSTesterController implements Initializable{
     }
 
     private void loginLogic(String id, String pass){
-        System.out.println(id);
-        System.out.println(pass);
         boolean success = false;
-        String address = "127.0.0.1";
+        String address = "192.168.1.72";
         int port = 31337;
 
         try {
@@ -133,22 +135,70 @@ public class JPNSTesterController implements Initializable{
             String toSend = "L\n" + id +"\n" + pass;
             
             out.write(toSend.getBytes());
-            //InputStream inFromServer = client.getInputStream();
-            //DataInputStream in = new DataInputStream(inFromServer);
+            InputStream inFromServer = client.getInputStream();
+            DataInputStream in = new DataInputStream(inFromServer);
             
-            //System.out.println("Server says " + in.readUTF());
+            //server says login was good
+            if(in.read() == 115){
+                success = true;
+            }
             client.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         //check if login is good
         if(success){
             fileDropdown.setVisible(true);
+            userID.setVisible(false);
+            password.setVisible(false);
+            outputText.setText("Login successful, Welcome!");
+            outputText.setStyle("-fx-text-fill: green;");
+            outputText.setVisible(true);
+            login.setVisible(false);
+            userid = id;
         }
         else{
             outputText.setText("There was an error logging in. Please check your connection");
             outputText.setStyle("-fx-text-fill: red;");
             outputText.setVisible(true);
+        }
+    }
+
+    private void submitGrade(float percent){
+        int rounded = (int)Math.ceil(percent);
+        boolean success = false;
+        String address = "192.168.1.72";
+        int port = 31337;
+
+        try {
+            System.out.println("Connecting to " + address+ " on port " + port);
+            Socket client = new Socket(address, port);
+            
+            System.out.println("Just connected to " + client.getRemoteSocketAddress());
+            OutputStream outToServer = client.getOutputStream();
+            DataOutputStream out = new DataOutputStream(outToServer);
+            String toSend = "G\n" + Integer.toString(lessonID) +"\n" + userid +"\n" + Integer.toString(rounded);
+            
+            out.write(toSend.getBytes());
+            InputStream inFromServer = client.getInputStream();
+            DataInputStream in = new DataInputStream(inFromServer);
+            
+            //server says login was good
+            if(in.read() == 115){
+                success = true;
+            }
+            client.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //check if login is good
+        if(success){
+            System.out.println("successfully recorded grade");
+        }
+        else{
+            System.out.println("error recording grade");
         }
     }
 
@@ -212,6 +262,8 @@ public class JPNSTesterController implements Initializable{
             submit.setVisible(false);
             outputText.setText("You got " + Integer.toString(grade) + " correct.");
             outputText.setVisible(true);
+            float percent = grade/test.size();
+            submitGrade(percent);
             
         }
     }
@@ -219,6 +271,7 @@ public class JPNSTesterController implements Initializable{
     @FXML
     private void lesson5Action(ActionEvent event){
         lesson = "lesson5.dat";
+        lessonID = jpnsLessons[5];
         definitions.clear();
         test.clear();
         used.clear();
@@ -232,6 +285,7 @@ public class JPNSTesterController implements Initializable{
     @FXML
     private void lesson6Action(ActionEvent event){
         lesson = "lesson6.dat";
+        lessonID = jpnsLessons[6];
         definitions.clear();
         test.clear();
         question = 0;
@@ -244,6 +298,7 @@ public class JPNSTesterController implements Initializable{
     @FXML
     private void lesson7Action(ActionEvent event){
         lesson = "lesson7.dat";
+        lessonID = jpnsLessons[7];
         definitions.clear();
         test.clear();
         question = 0;
