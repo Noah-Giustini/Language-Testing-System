@@ -13,7 +13,7 @@ $userID = $argv[2];
 $grade = $argv[3];
 
 //check for existing grades
-$refgdsql = "SELECT gradeval FROM grade AS G WHERE G.studentid = '$userID' AND lessonid = '$lessonID";
+$refgdsql = "SELECT gradeval FROM grade AS G WHERE G.studentid = '$userID' AND G.lessonid = '$lessonID';";
 $refgd = mysqli_query($con, $refgdsql);
 //if there is a grade see what it is
 if($refgd != false){
@@ -28,7 +28,7 @@ if($refgd != false){
         }
         //let server know we did good
         print("success");
-    
+        $refgd->close();
     }
 }
 //no grade exists yet. add new one
@@ -39,7 +39,7 @@ else{
     }
 }
 //close variable and connection
-$refgd->close();
+
 mysqli_close($con);
 
 ?>

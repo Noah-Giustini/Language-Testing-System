@@ -118,7 +118,7 @@ int main()
                 //for all the characters in the input
                 for (int i = 0; i < strlen(messagein); i++)
                 {   
-                   char *vals[3];
+                   char *vals[4];
                    int iCurName = 0;
                    char *token;
 
