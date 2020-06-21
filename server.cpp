@@ -185,10 +185,6 @@ int main()
                     else if (protocol == "G"){
                         string val3;
 
-                        
-
-                        cout << c1 << " " << c2 << " " << c3 << endl;
-
                         char gradeCmd[1000];
                         sprintf(gradeCmd, "php gradeScript.php %s %s %s", c1, c2, c3);
 
