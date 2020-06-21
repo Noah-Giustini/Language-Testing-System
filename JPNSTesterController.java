@@ -166,7 +166,8 @@ public class JPNSTesterController implements Initializable{
     }
 
     private void submitGrade(float percent){
-        int rounded = (int)Math.ceil(percent);
+        int rounded = (int)Math.ceil(percent*100);
+ 
         boolean success = false;
         String address = "192.168.1.72";
         int port = 31337;
@@ -262,7 +263,9 @@ public class JPNSTesterController implements Initializable{
             submit.setVisible(false);
             outputText.setText("You got " + Integer.toString(grade) + " correct.");
             outputText.setVisible(true);
-            float percent = grade/test.size();
+            float percent = (float) grade/test.size();
+            System.out.println(grade);
+            System.out.println(percent);
             submitGrade(percent);
             
         }
