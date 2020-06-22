@@ -122,7 +122,7 @@ public class JPNSTesterController implements Initializable{
 
     private void loginLogic(String id, String pass){
         boolean success = false;
-        String address = "192.168.1.72";
+        String address = "75.159.213.212";
         int port = 31337;
 
         try {
@@ -169,7 +169,7 @@ public class JPNSTesterController implements Initializable{
         int rounded = (int)Math.ceil(percent*100);
  
         boolean success = false;
-        String address = "192.168.1.72";
+        String address = "75.159.213.212";
         int port = 31337;
 
         try {
