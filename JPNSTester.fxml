@@ -15,12 +15,29 @@
          </font></Label>
       <MenuButton fx:id="fileDropdown" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" text="Lesson Select">
          <items>
-            <RadioMenuItem fx:id="lesson5" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 5">
+            <RadioMenuItem fx:id="lesson1" mnemonicParsing="false" onAction="#lesson1Action" text="Lesson 1">
                <toggleGroup>
                   <ToggleGroup fx:id="lessons" />
-               </toggleGroup></RadioMenuItem>
+               </toggleGroup>
+            </RadioMenuItem>
+            <RadioMenuItem fx:id="lesson2" mnemonicParsing="false" onAction="#lesson2Action" text="Lesson 2">
+               <toggleGroup>
+                  <ToggleGroup fx:id="lessons2" />
+               </toggleGroup>
+            </RadioMenuItem>
+            <RadioMenuItem fx:id="lesson3" mnemonicParsing="false" onAction="#lesson3Action" text="Lesson 3">
+               <toggleGroup>
+                  <ToggleGroup fx:id="lessons11" />
+               </toggleGroup>
+            </RadioMenuItem>
+            <RadioMenuItem fx:id="lesson4" mnemonicParsing="false" onAction="#lesson4Action" text="Lesson 4">
+               <toggleGroup>
+                  <ToggleGroup fx:id="lessons1" />
+               </toggleGroup>
+            </RadioMenuItem>
+            <RadioMenuItem fx:id="lesson5" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 5" toggleGroup="$lessons" />
             <RadioMenuItem fx:id="lesson6" mnemonicParsing="false" onAction="#lesson6Action" text="Lesson 6" toggleGroup="$lessons" />
-            <RadioMenuItem fx:id="lesson7" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 7" toggleGroup="$lessons" />
+            <RadioMenuItem fx:id="lesson7" mnemonicParsing="false" onAction="#lesson5Action" text="Lesson 7" toggleGroup="$lessons" visible="false" />
          </items>
       </MenuButton>
       <TextField fx:id="translation" layoutX="227.0" layoutY="188.0" onAction="#submitQuestion" />

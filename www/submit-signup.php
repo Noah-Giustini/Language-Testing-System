@@ -35,7 +35,7 @@ if($password != false){
         die('Error: ' . mysqli_error($con));
     }
     $takejpns = "INSERT INTO takes VALUE (486758,'$userID');";
-    if (!mysqli_query($con,$insert)){
+    if (!mysqli_query($con,$takejpns)){
         die('Error: ' . mysqli_error($con));
     }
     header("Location: success.php");

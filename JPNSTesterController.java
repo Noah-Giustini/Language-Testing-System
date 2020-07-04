@@ -1,8 +1,6 @@
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import javax.imageio.ImageIO;
 import java.lang.Integer;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
@@ -37,6 +33,15 @@ public class JPNSTesterController implements Initializable{
     @FXML
     private MenuButton fileDropdown;
 
+
+    @FXML
+    private RadioMenuItem lesson1;
+    @FXML
+    private RadioMenuItem lesson2;
+    @FXML
+    private RadioMenuItem lesson3;
+    @FXML
+    private RadioMenuItem lesson4;
     @FXML
     private RadioMenuItem lesson5;
     @FXML
@@ -271,6 +276,67 @@ public class JPNSTesterController implements Initializable{
         }
     }
 
+    //note: these lesson actions can probably be consolidated into one in the future as an optimization
+
+    //function to  handle action for selecting lesson. sets lesson file and lesson id for db and attempts to create and start a test
+    @FXML
+    private void lesson1Action(ActionEvent event){
+        lesson = "lesson1.dat";
+        lessonID = jpnsLessons[1];
+        definitions.clear();
+        test.clear();
+        used.clear();
+        question = 0;
+        openFile();
+        createTest();
+        startTest();
+        
+    }
+
+    //function to  handle action for selecting lesson. sets lesson file and lesson id for db and attempts to create and start a test
+    @FXML
+    private void lesson2Action(ActionEvent event){
+        lesson = "lesson2.dat";
+        lessonID = jpnsLessons[2];
+        definitions.clear();
+        test.clear();
+        used.clear();
+        question = 0;
+        openFile();
+        createTest();
+        startTest();
+        
+    }
+
+    //function to  handle action for selecting lesson. sets lesson file and lesson id for db and attempts to create and start a test
+    @FXML
+    private void lesson3Action(ActionEvent event){
+        lesson = "lesson3.dat";
+        lessonID = jpnsLessons[3];
+        definitions.clear();
+        test.clear();
+        question = 0;
+        openFile();
+        createTest();
+        startTest();
+        
+    }
+
+    //function to  handle action for selecting lesson. sets lesson file and lesson id for db and attempts to create and start a test
+    @FXML
+    private void lesson4Action(ActionEvent event){
+        lesson = "lesson4.dat";
+        lessonID = jpnsLessons[4];
+        definitions.clear();
+        test.clear();
+        question = 0;
+        openFile();
+        createTest();
+        startTest();
+        
+    }
+
+    //function to  handle action for selecting lesson. sets lesson file and lesson id for db and attempts to create and start a test
     @FXML
     private void lesson5Action(ActionEvent event){
         lesson = "lesson5.dat";
@@ -285,6 +351,7 @@ public class JPNSTesterController implements Initializable{
         
     }
 
+    //function to  handle action for selecting lesson. sets lesson file and lesson id for db and attempts to create and start a test
     @FXML
     private void lesson6Action(ActionEvent event){
         lesson = "lesson6.dat";
@@ -298,6 +365,7 @@ public class JPNSTesterController implements Initializable{
         
     }
 
+    //function to  handle action for selecting lesson. sets lesson file and lesson id for db and attempts to create and start a test
     @FXML
     private void lesson7Action(ActionEvent event){
         lesson = "lesson7.dat";
