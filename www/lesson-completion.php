@@ -17,7 +17,7 @@ $userID = $_SESSION["UserID"];
 
 
 //query
-$result = mysqli_query($con,"SELECT L.name, G.grade FROM lesson AS L, grade AS G WHERE G.studentid = '$userID' AND G.lessonid = L.idlesson");
+$result = mysqli_query($con,"SELECT L.name, G.gradeval FROM lesson AS L, grade AS G WHERE G.studentid = '$userID' AND G.lessonid = L.idlesson");
 
 echo "<table border='1'>
 <tr>
