@@ -26,6 +26,9 @@ if($refgd != false){
         if (!mysqli_query($con,$insertGrade)){
             die('Error: ' . mysqli_error($con));
         }
+        //let server know we did good
+        print("success");
+        $refgd->close();
     }
     //if the new grade is better update the value
     else if($result[0] <= $grade){
