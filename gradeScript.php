@@ -20,8 +20,15 @@ if($refgd != false){
     $refgd->data_seek(0);
     $result = $refgd->fetch_row();
 
+
+    if (empty($result[0])){
+        $insertGrade = "INSERT INTO grade VALUE ('$lessonID','$userID','$grade');";
+        if (!mysqli_query($con,$insertGrade)){
+            die('Error: ' . mysqli_error($con));
+        }
+    }
     //if the new grade is better update the value
-    if($result[0] <= $grade){
+    else if($result[0] <= $grade){
         $updateGrade = "UPDATE grade SET gradeval = '$grade' WHERE lessonid = '$lessonID' AND studentid = '$userID';";
         if (!mysqli_query($con,$updateGrade)){
             die('Error: ' . mysqli_error($con));
